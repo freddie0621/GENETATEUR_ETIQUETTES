@@ -1,0 +1,68 @@
+<html>
+<style>
+.bordered-list li {
+  border: 2px solid black;
+  display: inline-block;
+  padding: 5px;
+  margin: 15px 15px; /* add space between elements */
+  font-family: Monospace;
+  font-size: 58px;
+}
+</style>
+
+
+   
+      <label for="words">Entre des mots séparés par des +:</label><br>
+      <input type="text" id="words" name="words" onchange="convertToList()" size="130"><br>
+      <button onclick="convertToList()">Convert to List</button>
+    
+    <br>
+    <div id="listContainer">
+      <ul id="wordList"  class="bordered-list"></ul>
+	  <br>_____________________________________________________________________________</br>
+    </div>
+
+<script>
+  function convertToList() {
+  
+  //VIDAGE
+  var ul = document.getElementById("wordList");
+  //ul.innerHTML = "<li>Item 1</li><li>Item 2</li><li>Item 3</li>";
+  ul.innerHTML = "";
+  
+  //FIn VIDAGE
+  
+  
+    // Get the input text
+    var inputText = document.getElementById("words").value;
+    // Split the input text into an array of words
+    //var words = inputText.split(" ");
+	var words = inputText.split("+");
+	
+    // Get the unordered list element
+    var list = document.getElementById("wordList");
+    // Loop through the array of words and create list items
+    for (var i = 0; i < words.length; i++) {
+      var li = document.createElement("li");
+      li.innerHTML = words[i];
+      list.appendChild(li);
+    }
+	randomizeList("wordList");
+  }
+  
+  
+  function randomizeList(name) {
+var ul = document.getElementById(name);
+  //var ul = document.querySelector('ul');
+for (var i = ul.children.length; i >= 0; i--) {
+    ul.appendChild(ul.children[Math.random() * i | 0]);
+}
+}
+</script>
+
+
+
+
+
+
+</html>
